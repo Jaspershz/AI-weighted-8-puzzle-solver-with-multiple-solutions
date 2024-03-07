@@ -610,13 +610,13 @@ class GreedyBestFirstSolverh3:
     def modified_manhattan_dist_heuristic(self, state):
         """Calculate the modiefied manhattan distance heuristic by combining the h1 and h2"""
         h = 0
-        total_distance = 0
         for i in range(9):
+            distance = 0
             tile = state.get_tile(i % 3, i // 3)
             if tile != '0':
                 goal_x, goal_y = GOAL_STATE.find(tile)
-                total_distance += abs(goal_x - (i % 3)) + abs(goal_y - (i // 3))
-            h += (int(tile) ** 2) * total_distance
+                distance = abs(goal_x - (i % 3)) + abs(goal_y - (i // 3))
+            h += (int(tile) ** 2) * distance
         return h
         
 
@@ -1004,13 +1004,13 @@ class AStarSolverh3:
     def modified_manhattan_dist_heuristic(self, state):
         """Calculate the modiefied manhattan distance heuristic by combining the h1 and h2"""
         h = 0
-        total_distance = 0
         for i in range(9):
             tile = state.get_tile(i % 3, i // 3)
+            distance = 0
             if tile != '0':
                 goal_x, goal_y = GOAL_STATE.find(tile)
-                total_distance += abs(goal_x - (i % 3)) + abs(goal_y - (i // 3))
-            h += (int(tile) ** 2) * total_distance
+                distance = abs(goal_x - (i % 3)) + abs(goal_y - (i // 3))
+            h += (int(tile) ** 2) * distance
         return h
 
     def add_to_frontier(self, node, priority):
